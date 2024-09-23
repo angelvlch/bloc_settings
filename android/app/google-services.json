@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "994468511463",
+    "project_id": "setting-app-e30b8",
+    "storage_bucket": "setting-app-e30b8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:994468511463:android:6a3ce3ca3300883ea1ac42",
+        "android_client_info": {
+          "package_name": "com.example.bloc_settings"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9kscTDSCbQKfnrp4D-N_iilorapLay5o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
