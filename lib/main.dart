@@ -1,4 +1,7 @@
 import 'package:bloc_settings/firebase_options.dart';
+import 'package:bloc_settings/forgot_password.dart';
+import 'package:bloc_settings/home.dart';
+import 'package:bloc_settings/sign_in.dart';
 import 'package:bloc_settings/sign_up.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -15,9 +18,9 @@ class MyApp extends StatelessWidget {
   Map<String, WidgetBuilder> get _routes {
     return {
       Routes.signUp: (context) => const SignUpScreen(),
-      //Routes.home: (context) => HomeScreen(),
-      // Routes.login: (context) => LoginScreen(),
-      //Routes.forgetPassword: (context) => ForgetPasswordScreen(),
+      Routes.home: (context) => const HomeScreen(),
+      Routes.signIn: (context) => const SignInScreen(),
+      Routes.forgetPassword: (context) => const ForgetPasswordScreen(),
     };
   }
 
@@ -34,8 +37,8 @@ class MyApp extends StatelessWidget {
 
 class Routes {
   Routes._();
-  static const signUp = '/';
+  static const signUp = '/sign-up';
   static const home = '/home';
-  static const login = '/login';
+  static const signIn = '/';
   static const forgetPassword = '/forget-password';
 }

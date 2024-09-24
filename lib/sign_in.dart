@@ -1,31 +1,29 @@
-import 'package:bloc_settings/sign_in.dart';
+import 'package:bloc_settings/main.dart';
 import 'package:bloc_settings/widgets/custom_button.dart';
 import 'package:bloc_settings/widgets/custom_text_field.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
+class SignInScreen extends StatefulWidget {
+  const SignInScreen({super.key});
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  State<SignInScreen> createState() => _SignInScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _SignInScreenState extends State<SignInScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwodController = TextEditingController();
-  TextEditingController nameController = TextEditingController();
 
-  String email = "", password = "", name = "";
+  String email = "", password = "";
 
   final _formKey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        resizeToAvoidBottomInset: true,
+    return Scaffold(
+      body: Scaffold(
+        //  resizeToAvoidBottomInset: true,
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Column(
@@ -38,11 +36,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   key: _formKey,
                   child: Column(
                     children: [
-                      CustomTextField(
-                        controller: nameController,
-                        hintText: 'Name',
-                        onTap: () {},
-                      ),
                       const SizedBox(height: 20),
                       CustomTextField(
                         controller: emailController,
@@ -59,17 +52,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       SizedBox(
                         width: MediaQuery.of(context).size.width,
                         child: CustomButton(
-                          title: 'Sign Up',
+                          title: 'Sign In',
                           onTap: () {
                             if (_formKey.currentState!.validate()) {
                               setState(() {
-                                name = nameController.text;
                                 email = emailController.text;
                                 password = passwodController.text;
                               });
-                              registration();
+                              // registration();
                             }
                           },
+                        ),
+                      ),
+                      const SizedBox(height: 35),
+                      GestureDetector(
+                        onTap: () =>
+                            Navigator.pushNamed(context, Routes.signUp),
+                        child: const Text(
+                          'Forgot Password?',
                         ),
                       ),
                       const SizedBox(height: 35),
@@ -113,7 +113,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         text: TextSpan(
                           children: [
                             const TextSpan(
-                              text: 'Already have an account? ',
+                              text: 'Don' 't have an account? ',
                               style: TextStyle(
                                 color: Color(0xFF273671),
                                 fontSize: 22,
@@ -122,14 +122,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             TextSpan(
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () {
-                                    Navigator.pop(context);
-                                    Navigator.push(
+                                    Navigator.pushNamed(
                                       context,
-                                      MaterialPageRoute(
-                                          builder: (context) => SignInScreen()),
+                                      Routes.signUp,
                                     );
+                                   signIn();
                                   },
-                                text: 'Login',
+                                text: 'SignUp',
                                 style: const TextStyle(
                                     fontSize: 22,
                                     color: Color(0xFF273671),
@@ -148,21 +147,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
       ),
     );
   }
+  
+  void signIn() async{
+    try{
 
-  void registration() async {
-    try {
-      UserCredential userCredential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(email: email, password: password);
-    } on FirebaseAuthException catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          backgroundColor: Colors.orangeAccent,
-          content: Text(
-            e.code,
-            style: TextStyle(fontSize: 18.0),
-          ),
-        ),
-      );
     }
+    cat
   }
 }
