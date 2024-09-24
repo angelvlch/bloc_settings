@@ -1,6 +1,7 @@
 import 'package:bloc_settings/main.dart';
 import 'package:bloc_settings/widgets/custom_button.dart';
 import 'package:bloc_settings/widgets/custom_text_field.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -59,7 +60,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                 email = emailController.text;
                                 password = passwodController.text;
                               });
-                              // registration();
+                              signIn();
                             }
                           },
                         ),
@@ -126,7 +127,6 @@ class _SignInScreenState extends State<SignInScreen> {
                                       context,
                                       Routes.signUp,
                                     );
-                                   signIn();
                                   },
                                 text: 'SignUp',
                                 style: const TextStyle(
@@ -147,11 +147,18 @@ class _SignInScreenState extends State<SignInScreen> {
       ),
     );
   }
-  
-  void signIn() async{
-    try{
 
+  void signIn() async {
+    try {
+      await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
+    } on FirebaseAuthException catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.orangeAccent,
+          content: Text(e.code),
+        ),
+      );
     }
-    cat
   }
 }
